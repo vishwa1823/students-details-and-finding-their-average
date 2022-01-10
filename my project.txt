@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+        struct student
+        {
+          float sub1;
+          float sub2;
+          float sub3;
+          float sub4;
+          float sub5;
+        };
+            int main()
+        {
+             struct student s[10];
+             int i,n,roll,y;
+float average,total;
+             char name[50];
+             printf("enter the number of students=");
+             scanf("%d",&n);
+             	FILE *fptr;
+	fptr=(fopen("C:\\student.txt","w"));
+	if(fptr==NULL) {
+		printf("Error!");
+		exit(1);
+	}
+	fprintf(fptr,"\t\t\t\t\t\t\t\t-----------STUDENTS RECORDS--------\n\n");
+             for(i=0;i<n;i++)
+                 {
+                     printf("name of students =");
+                     scanf("%s",name);
+                     printf("enter the roll number =");
+                     scanf("%d",&roll);
+                     
+                        printf("\nEnter Marks of five  Subjects = ");
+                        scanf("%f%f%f%f%f",& s[i].sub1,&s[i].sub2,&s[i].sub3,&s[i].sub4,&s[i].sub5);
+                        average=(s[i].sub1+s[i].sub2+s[i].sub3+s[i].sub4+s[i].sub5)/5;
+                        total=s[i].sub1+s[i].sub2+s[i].sub3+s[i].sub4+s[i].sub5;
+                        printf("\nAverage Mark of %s Student= %.2f\n",name,average);
+                        y=(average>=40?printf(" \nPASS\n"):printf("\nFAIL\n"));
+                       
+                       fprintf(fptr,"\n ROLL NUMBER=%d||NAME=%s\t||MARK1=%.2f||MARK2=%.2f||MARK3=%.2f||MARK4=%.2f||MARK5=%.2f||TOTALS=%.2f||AVERAGE=%.2f",roll,name, s[i].sub1,s[i].sub2,s[i].sub3,s[i].sub4,s[i].sub5,total,average);
+                    y=(average>=40?fprintf(fptr,"||PASS||\nREMARK:*KEEP IT UP*\n"):fprintf(fptr,"||FAIL||\nREMARK:*UR BEST IS YET TO COME*\n"));     
+                     }
+                 fclose(fptr);
+                        return 0;
+         }
